@@ -17,17 +17,13 @@ class App extends Component {
   };
 
   getYoMamaJoke = async () => {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        // Access the result here
-        console.log(this.responseText);
-      }
-    };
-    xhttp.open('GET', 'https://api.yomomma.info/', true);
-    xhttp.setRequestHeader('Content-type', 'application/json');
-    xhttp.setRequestHeader('X-JokesOne-Api-Secret', 'YOUR API HERE');
-    xhttp.send();
+    try {
+      const res = await fetch('https://api.yomomma.info');
+      const data = await res.json();
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {
